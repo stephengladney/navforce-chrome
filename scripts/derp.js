@@ -1,10 +1,12 @@
 setTimeout(loadContent, 2000)
 
-function createLead({ firstName, lastName, company }) {
+let emailAddy
+
+function createLead({ firstName, lastName, company, email }) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ firstName, lastName, company }),
+    body: JSON.stringify({ firstName, lastName, company, email }),
   }
   return fetch("http://localhost:5000/lead", requestOptions)
 }
@@ -24,7 +26,7 @@ function updateButton(type) {
 function loadContent() {
   const anchors = Array.from(document.querySelectorAll("a"))
   const email = anchors.find((anchor) => anchor.href.includes("mailto:"))?.href
-  const emailAddy = email?.substring(7)
+  emailAddy = email?.substring(7)
 
   const h1s = Array.from(document.querySelectorAll("h1"))
 
@@ -47,7 +49,12 @@ function loadContent() {
     "<button id='addlead' style='background:#80a;color:#fff;border: none; padding: 7px 0px; border-radius: 18px; font-weight:700; width: 120px;'>Add Lead</button>"
 
   document.querySelector("#addlead").addEventListener("click", () => {
-    createLead({ firstName, lastName, company: currentCompany })
+    createLead({
+      firstName,
+      lastName,
+      company: currentCompany,
+      email: emailAddy,
+    })
       .then((_) => {
         updateButton("success")
       })
