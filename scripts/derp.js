@@ -1,7 +1,5 @@
 setTimeout(loadContent, 2000)
 
-let emailAddy
-
 function createLead({ firstName, lastName, company, email }) {
   const requestOptions = {
     method: "POST",
@@ -30,7 +28,7 @@ function updateButton(type) {
 function loadContent() {
   const anchors = Array.from(document.querySelectorAll("a"))
   const email = anchors.find((anchor) => anchor.href.includes("mailto:"))?.href
-  emailAddy = email?.substring(7)
+  const emailAddy = email?.substring(7)
 
   const h1s = Array.from(document.querySelectorAll("h1"))
 
