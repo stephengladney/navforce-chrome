@@ -13,6 +13,10 @@ function createLead({ firstName, lastName, company, email }) {
 
 function updateButton(type) {
   const button = document.querySelector("#addlead")
+  if (type === "pending") {
+    button.style.backgroundColor = "#888"
+    button.innerText = "Adding..."
+  }
   if (type === "success") {
     button.style.backgroundColor = "#0a0"
     button.innerText = "Added!"
@@ -49,6 +53,7 @@ function loadContent() {
     "<button id='addlead' style='background:#80a;color:#fff;border: none; padding: 7px 0px; border-radius: 18px; font-weight:700; width: 120px;'>Add Lead</button>"
 
   document.querySelector("#addlead").addEventListener("click", () => {
+    updateButton("pending")
     createLead({
       firstName,
       lastName,
