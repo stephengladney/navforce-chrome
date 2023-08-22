@@ -50,7 +50,6 @@ function loadContent() {
   )
 
   const isReactDev = document.body.innerText.includes("React")
-  const reactFound = profileActions.appendChild(document.createElement("span"))
 
   if (isReactDev) {
     const newButton = profileActions.appendChild(
@@ -60,6 +59,10 @@ function loadContent() {
     newButton.style =
       "background:#80a;color:#fff;border: none; padding: 7px 0px; border-radius: 18px; font-weight:700; width: 120px; margin-right: 10px;"
     newButton.innerText = "Add Lead"
+
+    const reactFound = profileActions.appendChild(
+      document.createElement("span")
+    )
 
     reactFound.style =
       "background: #0bd; color: #fff; padding: 5px 10px; border-radius: 18px; font-weight: 700; margin-right: 10px;"
@@ -81,6 +84,9 @@ function loadContent() {
         })
     })
   } else {
+    const reactFound = profileActions.appendChild(
+      document.createElement("span")
+    )
     reactFound.style =
       "background: #c00; color: #fff; padding: 5px 10px; border-radius: 18px; font-weight: 700"
     reactFound.innerText = "No React"
