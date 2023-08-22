@@ -1,12 +1,14 @@
 setTimeout(loadContent, 2000)
 
-function createLead({ firstName, lastName, company, email }) {
+async function createLead({ firstName, lastName, company, email }) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ firstName, lastName, company, email }),
   }
-  return fetch("http://localhost:5000/lead", requestOptions)
+  const response = await fetch("http://localhost:5000/lead", requestOptions)
+  if (!response.ok) throw "Error"
+  else return response
 }
 
 function updateButton(type) {
@@ -37,9 +39,11 @@ function loadContent() {
 
   const ps = Array.from(document.querySelectorAll("p"))
 
-  const currentCompany = ps.find(
-    (p) => p.dataset.anonymize === "company-name"
-  ).innerText
+  const currentCompany =
+    ps.find((p) => p.dataset.anonymize === "company-name")?.innerText ??
+    "Unknown"
+
+  console.log(currentCompany)
 
   const sections = Array.from(document.querySelectorAll("section"))
 
