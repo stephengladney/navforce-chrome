@@ -49,10 +49,25 @@ function loadContent() {
     section.className.includes("actions-bar")
   )
 
-  profileActions.innerHTML +=
-    "<button id='addlead' style='background:#80a;color:#fff;border: none; padding: 7px 0px; border-radius: 18px; font-weight:700; width: 120px;'>Add Lead</button>"
+  const reactFound = profileActions.appendChild(document.createElement("span"))
 
-  document.querySelector("#addlead").addEventListener("click", () => {
+  if (document.body.innerText.includes("React")) {
+    reactFound.style =
+      "background: #0bd; color: #fff; padding: 5px 10px; border-radius: 18px; margin-right: 10px; font-weight: 700"
+    reactFound.innerText = "React"
+  } else {
+    reactFound.style =
+      "background: #c00; color: #fff; padding: 5px 10px; border-radius: 18px; margin-right: 10px; font-weight: 700"
+    reactFound.innerText = "No React"
+  }
+
+  const newButton = profileActions.appendChild(document.createElement("button"))
+  newButton.id = "addlead"
+  newButton.style =
+    "background:#80a;color:#fff;border: none; padding: 7px 0px; border-radius: 18px; font-weight:700; width: 120px;"
+  newButton.innerText = "Add Lead"
+
+  newButton.addEventListener("click", () => {
     updateButton("pending")
     createLead({
       firstName,
