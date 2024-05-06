@@ -1,4 +1,6 @@
-setTimeout(loadContent, 2000);
+document.addEventListener("readystatechange", () => {
+  if (document.readyState === "complete") loadContent();
+});
 
 async function createLead({ firstName, lastName, company, email }) {
   const requestOptions = {
